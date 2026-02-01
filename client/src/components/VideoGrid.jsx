@@ -32,19 +32,25 @@ const VideoGrid = () => {
     });
   }
 
-  // Add peer streams
+  // Add peer streams - ONLY if participant still exists
   Object.entries(peers).forEach(([peerId, peerData]) => {
     if (peerData.stream) {
       const participant = participants.find(p => p.id === peerId);
-      allStreams.push({
-        id: peerId,
-        stream: peerData.stream,
-        userName: participant?.userName || 'Unknown',
-        isLocal: false,
-        audio: participant?.audio ?? true,
-        video: participant?.video ?? true,
-        screenSharing: participant?.screenSharing ?? false
-      });
+      
+      // Only show peer if they're in the participants list
+      if (participant) {
+        allStreams.push({
+          id: peerId,
+          stream: peerData.stream,
+          userName: participant.userName,
+          isLocal: false,
+          audio: participant.audio ?? true,
+          video: participant.video ?? true,
+          screenSharing: participant.screenSharing ?? false
+        });
+      } else {
+        console.warn('Peer stream exists for', peerId, 'but no matching participant - skipping display');
+      }
     }
   });
 

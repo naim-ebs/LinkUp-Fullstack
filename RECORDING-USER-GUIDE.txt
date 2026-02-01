@@ -1,0 +1,208 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                     📹 RECORDING FEATURE GUIDE                         ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+🎯 QUICK START
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Join a meeting
+2. Click the RECORD button (○ icon) in the controls
+3. Recording starts - you'll see "REC" indicator at top
+4. Click STOP button (⬛ icon) when done
+5. Recording downloads automatically!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+📍 WHERE TO FIND THE BUTTON
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Bottom Control Bar:
+┌─────────────────────────────────────────────────────────────────────┐
+│  [People] [🎤] [📹] [📞] [🖥️] [○]  ← Record button (circle icon)    │
+│                                                                      │
+│  When recording:                                                     │
+│  [People] [🎤] [📹] [📞] [🖥️] [⬛]  ← Stop button (square icon)     │
+└─────────────────────────────────────────────────────────────────────┘
+
+
+🎬 WHAT GETS RECORDED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ All participant video streams
+✅ All participant audio (mixed together)
+✅ Participant names/labels
+✅ Grid layout (just like you see it)
+✅ Full meeting duration
+
+❌ NOT recorded:
+   - Chat messages
+   - Participant list
+   - Screen UI elements
+
+
+📊 RECORDING QUALITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Video: 1920x1080 (Full HD)
+Audio: High quality (Opus codec)
+FPS: 30 frames per second
+Format: WebM (widely compatible)
+
+
+💾 FILE DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Filename: meeting-recording-[roomId]-[date-time].webm
+Location: Your browser's download folder
+Size: ~30-50 MB per minute
+Playback: VLC, Chrome, Firefox, most video players
+
+
+🎯 TIPS FOR BEST RESULTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Use desktop/laptop (not mobile)
+✓ Close unnecessary apps for better performance
+✓ Ensure enough disk space (~50 MB per minute)
+✓ Use Chrome or Firefox for best compatibility
+✓ Stop recording before leaving meeting
+✓ Good internet connection for smooth recording
+
+
+🔄 CONVERTING TO MP4
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Method 1: VLC Media Player
+   1. Open file in VLC
+   2. Media → Convert/Save
+   3. Choose MP4 format
+   4. Convert
+
+Method 2: Online Converter
+   - CloudConvert.com
+   - FreeConvert.com
+   - OnlineConverter.com
+
+Method 3: FFmpeg (Command Line)
+   ffmpeg -i recording.webm output.mp4
+
+
+⚠️ IMPORTANT NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔒 Privacy:
+   - Recordings stay on YOUR device only
+   - Not uploaded to any server
+   - You control the file completely
+
+⚡ Performance:
+   - Uses your computer's CPU
+   - May slow down on old computers
+   - More participants = more CPU usage
+
+💽 Storage:
+   - Files saved to Downloads folder
+   - Make sure you have space
+   - Delete old recordings if needed
+
+
+🆘 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problem: Recording won't start
+Solution:
+   ✓ Use Chrome or Firefox
+   ✓ Check browser permissions
+   ✓ Ensure camera/mic are working
+
+Problem: Poor video quality
+Solution:
+   ✓ Close other programs
+   ✓ Reduce number of participants
+   ✓ Use a faster computer
+
+Problem: Large file size
+Solution:
+   ✓ Record shorter segments
+   ✓ Convert to MP4 after recording
+   ✓ Use video compression tools
+
+Problem: No audio in recording
+Solution:
+   ✓ Check if mic was muted during recording
+   ✓ Ensure other participants weren't muted
+   ✓ Test with another browser
+
+
+📱 BROWSER COMPATIBILITY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Chrome 90+      (Best)
+✅ Firefox 88+     (Best)
+✅ Edge 90+        (Good)
+⚠️ Safari 14+      (Limited)
+❌ IE / Old browsers (Not supported)
+
+
+🎓 USE CASES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Perfect for:
+   📚 Training sessions
+   💼 Client presentations
+   👥 Team meetings
+   🎓 Online classes
+   📊 Product demos
+   🗣️ Webinars
+
+
+⌨️ KEYBOARD SHORTCUTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Currently: No keyboard shortcuts
+Tip: Click the button to start/stop recording
+
+
+❓ FREQUENTLY ASKED QUESTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Q: Can other participants see I'm recording?
+A: Yes! The REC indicator is visible to you only, but it's good
+   practice to inform participants.
+
+Q: Where are recordings stored?
+A: In your browser's download folder. They are NOT uploaded anywhere.
+
+Q: Can I pause recording?
+A: Not currently. Stop and start a new recording if needed.
+
+Q: What if I leave the meeting while recording?
+A: Recording automatically stops and downloads.
+
+Q: Can I record without video?
+A: Recording needs at least one video stream to work.
+
+Q: How long can I record?
+A: As long as you have disk space! No time limit.
+
+Q: Can multiple people record the same meeting?
+A: Yes! Each person can record independently.
+
+Q: Are recordings encrypted?
+A: The download is a plain .webm file. Encrypt it yourself if needed.
+
+
+📞 NEED HELP?
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+For technical issues:
+   1. Check browser console (F12)
+   2. Try different browser
+   3. Review RECORDING-FEATURE.md
+   4. Contact support with error details
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        Happy Recording! 🎥
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

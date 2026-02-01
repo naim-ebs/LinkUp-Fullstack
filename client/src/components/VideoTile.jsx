@@ -8,7 +8,22 @@ const VideoTile = ({ stream, userName, isLocal = false, audio = true, video = tr
 
   useEffect(() => {
     if (videoRef.current && stream) {
-      videoRef.current.srcObject = stream;
+      console.log('VideoTile: Setting srcObject for', userName);
+      console.log('Stream tracks:', stream.getTracks().map(t => ({ kind: t.kind, id: t.id, readyState: t.readyState })));
+      
+      // Force update by clearing first
+      videoRef.current.srcObject = null;
+      
+      // Use requestAnimationFrame to ensure the clear takes effect
+      requestAnimationFrame(() => {
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+          // Force play
+          videoRef.current.play().catch(e => {
+            console.log('Autoplay prevented:', e.message);
+          });
+        }
+      });
     }
     
     // Cleanup when stream changes
@@ -17,7 +32,7 @@ const VideoTile = ({ stream, userName, isLocal = false, audio = true, video = tr
         videoRef.current.srcObject = null;
       }
     };
-  }, [stream]);
+  }, [stream, userName]);
 
   // Handle fullscreen changes
   useEffect(() => {

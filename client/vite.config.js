@@ -8,5 +8,18 @@ export default defineConfig({
   server: {
     https: true,
     host: true
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'socket-vendor': ['socket.io-client']
+        }
+      }
+    }
   }
 })

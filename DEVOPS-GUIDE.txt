@@ -1,0 +1,143 @@
+================================
+   nLive - AWS Deployment
+   Simple Guide for DevOps
+================================
+
+📋 READ THIS FIRST:
+- QUICKSTART.md = 10 minute guide
+- DEPLOYMENT.md = Full detailed guide
+- DEPLOYMENT-CHECKLIST.md = Step-by-step checklist
+
+================================
+   QUICK DEPLOYMENT (10 min)
+================================
+
+1️⃣ SSH into EC2
+   ssh -i your-key.pem ubuntu@your-ip
+
+2️⃣ Install stuff (copy-paste all):
+   sudo apt update && sudo apt upgrade -y
+   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+   sudo apt install -y nodejs apache2
+   sudo npm install -g pm2
+   pm2 startup systemd
+   sudo a2enmod proxy proxy_http proxy_wstunnel rewrite ssl headers
+   sudo systemctl restart apache2
+
+3️⃣ Upload code to /var/www/nlive
+   Then run:
+   cd /var/www/nlive
+   chmod +x deploy.sh
+   ./deploy.sh
+
+4️⃣ SSL (optional but recommended):
+   sudo apt install -y certbot python3-certbot-apache
+   sudo certbot --apache -d your-domain.com
+
+✅ DONE! Visit: https://your-domain.com
+
+================================
+   WHAT THE SCRIPT DOES
+================================
+
+deploy.sh automatically:
+✓ Installs backend dependencies
+✓ Creates .env file
+✓ Builds React frontend
+✓ Configures Apache
+✓ Starts backend with PM2
+✓ Sets permissions
+
+================================
+   IMPORTANT NOTES
+================================
+
+✓ Backend runs on port 3000 (PM2 manages it)
+✓ Apache serves frontend + proxies to backend
+✓ Frontend auto-detects backend URL (no config needed)
+✓ WebSocket connections work via Apache proxy
+✓ Logs: pm2 logs nlive-backend
+
+================================
+   FILES YOU GOT
+================================
+
+📄 QUICKSTART.md           <- Start here!
+📄 DEPLOYMENT.md           <- Full guide
+📄 DEPLOYMENT-CHECKLIST.md <- Step tracker
+📄 PRODUCTION-CHANGES.md   <- What changed
+📄 apache-config.conf      <- Apache setup
+📄 ecosystem.config.js     <- PM2 config
+📄 deploy.sh              <- Auto deploy
+📄 .env.production         <- Env template
+
+================================
+   AFTER DEPLOYMENT
+================================
+
+Check status:
+  pm2 status
+  sudo systemctl status apache2
+
+View logs:
+  pm2 logs nlive-backend
+  sudo tail -f /var/log/apache2/nlive-error.log
+
+Test app:
+  Open browser -> your-domain.com
+  Create meeting -> Join with another device
+
+================================
+   TROUBLESHOOTING
+================================
+
+Backend not working?
+  → pm2 logs nlive-backend
+  → pm2 restart nlive-backend
+
+Apache errors?
+  → sudo apache2ctl configtest
+  → sudo tail -f /var/log/apache2/nlive-error.log
+
+WebSocket issues?
+  → sudo apache2ctl -M | grep proxy
+  → Check browser console
+
+Can't connect?
+  → Check AWS Security Group (ports 80, 443)
+  → Check domain DNS points to EC2 IP
+
+================================
+   UPDATE APPLICATION
+================================
+
+cd /var/www/nlive
+git pull
+npm install --production
+cd client && npm install && npm run build
+pm2 restart nlive-backend
+
+================================
+   ARCHITECTURE
+================================
+
+Internet
+  ↓
+Apache (ports 80/443)
+  ├─→ /client/dist (React static files)
+  └─→ /socket.io → PM2 → Node.js (port 3000)
+
+================================
+   SUPPORT
+================================
+
+Something not working?
+
+1. Read QUICKSTART.md
+2. Check logs (pm2 logs)
+3. Read DEPLOYMENT.md
+4. Check Apache logs
+
+Everything is documented! 📚
+
+================================

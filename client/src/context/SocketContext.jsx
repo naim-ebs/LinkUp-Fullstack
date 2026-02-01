@@ -22,12 +22,21 @@ export const SocketProvider = ({ children, serverUrl }) => {
     
     if (!backendUrl) {
       const hostname = window.location.hostname;
+      const protocol = window.location.protocol;
+      const port = window.location.port;
       
-      if (hostname === 'localhost' || hostname === '127.0.0.1') {
-        backendUrl = 'http://localhost:3000';
-      } else {
-        // Backend is always HTTP (not HTTPS)
-        backendUrl = `http://${hostname}:3000`;
+      // Development environment (localhost, 127.0.0.1, or local IP addresses)
+      if (hostname === 'localhost' || hostname === '127.0.0.1' || 
+          hostname.match(/^192\.168\./) || hostname.match(/^10\./) || hostname.match(/^172\.(1[6-9]|2[0-9]|3[0-1])\./) ||
+          port === '5173' || port === '3000') {
+        // Use same protocol as frontend (http/https) and port 3000 for backend
+        const useHttps = protocol === 'https:';
+        backendUrl = `${useHttps ? 'https' : 'http'}://${hostname}:3000`;
+      } 
+      // Production environment - backend on same domain with Apache proxy
+      else {
+        // In production with Apache proxy, use same origin
+        backendUrl = `${protocol}//${hostname}${port ? ':' + port : ''}`;
       }
     }
     
@@ -36,7 +45,11 @@ export const SocketProvider = ({ children, serverUrl }) => {
     const newSocket = io(backendUrl, {
       auth: {
         token: 'dummy-token' // Add real auth token here
-      }
+      },
+      // Allow self-signed certificates in development
+      transports: ['websocket', 'polling'],
+      secure: true,
+      rejectUnauthorized: false // Accept self-signed certificates (development only)
     });
 
     newSocket.on('connect', () => {

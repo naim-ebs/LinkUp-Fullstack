@@ -1,4 +1,4 @@
-import { Mic, MicOff, Video, VideoOff, PhoneOff, MonitorUp, MessageSquare, Users } from 'lucide-react';
+import { Mic, MicOff, Video, VideoOff, PhoneOff, MonitorUp, MessageSquare, Users, Circle, Square } from 'lucide-react';
 import { useMeeting } from '../context/MeetingContext';
 
 const MeetingControls = ({ onToggleChat, onToggleParticipants, showChat, showParticipants }) => {
@@ -6,9 +6,13 @@ const MeetingControls = ({ onToggleChat, onToggleParticipants, showChat, showPar
     audioEnabled,
     videoEnabled,
     screenSharing,
+    isRecording,
+    recordingTime,
+    formatRecordingTime,
     toggleAudio,
     toggleVideo,
     toggleScreenShare,
+    toggleRecording,
     leaveRoom,
     participants
   } = useMeeting();
@@ -87,10 +91,33 @@ const MeetingControls = ({ onToggleChat, onToggleParticipants, showChat, showPar
           >
             <MonitorUp className="w-6 h-6 text-white" />
           </ControlButton>
+
+          <ControlButton
+            onClick={toggleRecording}
+            active={!isRecording}
+            activeColor={isRecording ? 'bg-red-600 animate-pulse' : 'bg-dark-800 hover:bg-dark-700'}
+            inactiveColor="bg-red-600 animate-pulse"
+            label={isRecording ? `Recording ${formatRecordingTime()}` : 'Start Recording'}
+          >
+            {isRecording ? (
+              <Square className="w-6 h-6 text-white fill-white" />
+            ) : (
+              <Circle className="w-6 h-6 text-white" />
+            )}
+          </ControlButton>
         </div>
 
         {/* Right side - Additional controls */}
         <div className="flex items-center gap-4">
+          {isRecording && (
+            <div className="flex items-center gap-2 px-4 py-2 bg-red-600/20 border border-red-600/50 rounded-lg">
+              <div className="w-3 h-3 bg-red-600 rounded-full animate-pulse" />
+              <span className="text-sm font-medium text-red-400">
+                Recording: {formatRecordingTime()}
+              </span>
+            </div>
+          )}
+          
           <button
             onClick={onToggleChat}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${

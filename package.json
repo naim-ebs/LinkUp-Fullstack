@@ -8,7 +8,9 @@
     "dev": "nodemon src/server.js",
     "test": "jest --coverage",
     "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix"
+    "lint:fix": "eslint src/**/*.js --fix",
+    "build:client": "cd client && npm install && npm run build",
+    "deploy": "npm install --production && npm run build:client"
   },
   "keywords": [
     "webrtc",
@@ -17,6 +19,7 @@
     "live-meeting",
     "real-time"
   ],
+
   "author": "",
   "license": "MIT",
   "dependencies": {

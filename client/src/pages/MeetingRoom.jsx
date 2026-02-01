@@ -4,6 +4,7 @@ import VideoGrid from '../components/VideoGrid';
 import MeetingControls from '../components/MeetingControls';
 import ChatPanel from '../components/ChatPanel';
 import ParticipantsPanel from '../components/ParticipantsPanel';
+import RecordingIndicator from '../components/RecordingIndicator';
 import { useMeeting } from '../context/MeetingContext';
 
 const MeetingRoom = () => {
@@ -59,6 +60,9 @@ const MeetingRoom = () => {
 
       {/* Main content */}
       <div className="flex-1 flex overflow-hidden">
+        {/* Recording indicator */}
+        <RecordingIndicator />
+        
         {/* Video area */}
         <div className="flex-1 relative">
           <VideoGrid />
