@@ -16,9 +16,9 @@ const CertificateHelper = ({ children }) => {
     if (hostname === 'localhost' || hostname === '127.0.0.1' || 
         hostname.match(/^192\.168\./) || hostname.match(/^10\./) || 
         hostname.match(/^172\.(1[6-9]|2[0-9]|3[0-1])\./) ||
-        port === '5173' || port === '3000') {
+        port === '5173' || port === '5500') {
       const useHttps = protocol === 'https:';
-      url = `${useHttps ? 'https' : 'http'}://${hostname}:3000`;
+      url = `${useHttps ? 'https' : 'http'}://${hostname}:5500`;
     }
     
     setBackendUrl(url);

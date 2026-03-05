@@ -85,16 +85,18 @@ const VideoTile = ({ stream, userName, isLocal = false, audio = true, video = tr
       onClick={handleClick}
       title="Double-click for fullscreen"
     >
-      {stream && hasVideoTrack && video ? (
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          muted={isLocal}
-          className="w-full h-full object-cover"
-        />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-900/20 to-dark-800">
+      {/* Always render video element for audio, but hide it when video is off */}
+      <video
+        ref={videoRef}
+        autoPlay
+        playsInline
+        muted={isLocal}
+        className={`w-full h-full object-cover ${!hasVideoTrack || !video ? 'hidden' : ''}`}
+      />
+      
+      {/* Show placeholder when video is off or no video track */}
+      {(!hasVideoTrack || !video) && (
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-900/20 to-dark-800">
           <div className="w-24 h-24 rounded-full bg-primary-600/20 flex items-center justify-center">
             <User className="w-12 h-12 text-primary-400" />
           </div>

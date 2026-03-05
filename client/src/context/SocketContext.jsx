@@ -28,10 +28,10 @@ export const SocketProvider = ({ children, serverUrl }) => {
       // Development environment (localhost, 127.0.0.1, or local IP addresses)
       if (hostname === 'localhost' || hostname === '127.0.0.1' || 
           hostname.match(/^192\.168\./) || hostname.match(/^10\./) || hostname.match(/^172\.(1[6-9]|2[0-9]|3[0-1])\./) ||
-          port === '5173' || port === '3000') {
-        // Use same protocol as frontend (http/https) and port 3000 for backend
+          port === '5173' || port === '5500') {
+        // Use same protocol as frontend (http/https) and port 5500 for backend
         const useHttps = protocol === 'https:';
-        backendUrl = `${useHttps ? 'https' : 'http'}://${hostname}:3000`;
+        backendUrl = `${useHttps ? 'https' : 'http'}://${hostname}:5500`;
       } 
       // Production environment - backend on same domain with Apache proxy
       else {
@@ -43,13 +43,19 @@ export const SocketProvider = ({ children, serverUrl }) => {
     console.log('Connecting to backend:', backendUrl);
     
     const newSocket = io(backendUrl, {
+      path: '/socket.io',
       auth: {
         token: 'dummy-token' // Add real auth token here
       },
-      // Allow self-signed certificates in development
-      transports: ['websocket', 'polling'],
-      secure: true,
-      rejectUnauthorized: false // Accept self-signed certificates (development only)
+      // Use polling first for better Apache proxy compatibility
+      transports: ['polling', 'websocket'],
+      secure: window.location.protocol === 'https:',
+      rejectUnauthorized: false, // Accept self-signed certificates (development only)
+      reconnection: true,
+      reconnectionDelay: 1000,
+      reconnectionDelayMax: 5000,
+      reconnectionAttempts: 5,
+      timeout: 20000
     });
 
     newSocket.on('connect', () => {

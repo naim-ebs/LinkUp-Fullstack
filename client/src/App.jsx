@@ -10,8 +10,10 @@ const AppContent = () => {
 };
 
 function App() {
+  const serverUrl = import.meta.env.VITE_SERVER_URL;
+
   return (
-    <SocketProvider>
+    <SocketProvider serverUrl={serverUrl}>
       <MeetingProvider>
         <CertificateHelper>
           <AppContent />
